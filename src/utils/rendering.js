@@ -14,34 +14,31 @@ import {
   flip,
   curry
 } from 'ramda'
+
 export const element = curry(React.createElement)
 
-
-// TODO: Refactor
-const pathToObject = (state) => compose(
-  mergeAll,
-  map(
-    converge(
-      objOf,
-      [
-        last,
-        compose(
-          flip(view)(state),
-          lensPath
-        )
-      ]
-    )
-  )
+// TODO: Make all pointfree
+const findByPath = state => compose(
+  flip(view)(state),
+  lensPath
 )
 
-// TODO: pointfree
-const propsOrNull = (state) => ifElse(
+const pathAsObject = state => converge(
+  objOf, [ last, findByPath(state) ]
+)
+
+const pathsToProps = state => compose(
+  mergeAll,
+  map( pathAsObject(state) )
+)
+
+const propsOrNull = state => ifElse(
   isEmpty,
   always(null),
-  pathToObject(state)
+  pathsToProps(state)
 )
 
-// TODO: Refactor
+// TODO: Refactor, if using ramdas when -> callstack max. Something with ramda and recursion?
 const generateTree = state => node => {
   return node.element ? 
     element(
@@ -51,6 +48,7 @@ const generateTree = state => node => {
     ) :
     node
 }
-export const buildApp = (state) => {
+
+export const buildApp = state => {
   return state.app ? generateTree(state)(state.app) : element('div')(null)(null)
 }
