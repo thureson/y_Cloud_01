@@ -4,11 +4,11 @@ import { replace, actionIs } from '../utils/state'
 import initialState from './initialState'
 import { cond, identity, T } from 'ramda'
 
-const reducer = (action, state) => 
-  cond([
-    [actionIs('SET_NAME'), replace(['data', 'people', 0, 'name'])],
-    [T, ac => identity]
-  ])(state)(action)
+// TODO: make pointfree
+const reducer = (action, state) => cond([
+  [actionIs('SET_NAME'), replace(['data', 'people', 0, 'name'])],
+  [T, ac => identity]
+])(state)(action)
 
 const action$ = new Subject();
 
