@@ -4,6 +4,7 @@ Rendered components are controlled with state. This enables changing the hierarc
 
 ### Info
 
+#### Rendering
 Setup the initial rendering of components by editing .app in  `src/store/initialState.js`
 
 Components are setup by following example:
@@ -25,6 +26,11 @@ Components are setup by following example:
   // Children can be components presented in the same way as shown or just text
 }
 ```
+
+#### Actions
+ActionCreators are recommended to be placed `src/store/actionCreators`
+
+Mapping of actions to states should be placed in `src/store/actionsToStates/modules` under some module. When creating modules remember to add the new module in `src/store/actionsToStates/modules/index.js`
 
 ### Setup
 ```
