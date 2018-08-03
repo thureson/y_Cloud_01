@@ -6,10 +6,12 @@ import { cond, identity, T, compose } from 'ramda'
 
 // TODO: make pointfree
 const reducer = (action, state) => cond([
-  [ actionIs('SET_NAME'),
+  [ 
+    actionIs('SET_NAME'),
     replace(['data', 'people', 0, 'name'])
   ],
-  [ actionIs('SET_NAMES'), 
+  [ 
+    actionIs('SET_NAMES'), 
     action => compose(
       alter(['data', 'people', 0, 'name'], action.name1),
       alter(['data', 'people', 1, 'name'], action.name2)
