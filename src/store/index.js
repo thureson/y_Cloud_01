@@ -2,10 +2,10 @@ import { Subject } from 'rxjs';
 import { startWith, scan } from 'rxjs/operators';
 import { replace, actionIs, alter } from '../utils/state'
 import initialState from './initialState'
-import { cond, identity, T, compose } from 'ramda'
+import { cond, identity, T, compose, flip } from 'ramda'
 
-// TODO: make pointfree
-const reducer = (action, state) => cond([
+// TODO: refactor flip away
+const reducer = flip(cond([
   [ 
     actionIs('SET_NAME'),
     replace(['data', 'people', 0, 'name'])
@@ -20,7 +20,7 @@ const reducer = (action, state) => cond([
   [
     T, ac => identity
   ]
-])(state)(action)
+]))
 
 const action$ = new Subject();
 
