@@ -1,16 +1,14 @@
 import { Subject } from 'rxjs';
 import { startWith, scan } from 'rxjs/operators';
-import { alter } from '../utils/state'
+import { replace, actionIs } from '../utils/state'
 import initialState from './initialState'
+import { cond, identity, T } from 'ramda'
 
-const reducer = (state, action) => {
-  switch(action.type) {
-    case 'SET_NAME':
-      return alter(['name'], action.name)(state)
-    default:
-      return state;
-  }
-}
+const reducer = (action, state) => 
+  cond([
+    [actionIs('SET_NAME'), replace(['data', 'people', 0, 'name'])],
+    [T, ac => identity]
+  ])(state)(action)
 
 const action$ = new Subject();
 

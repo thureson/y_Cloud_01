@@ -5,7 +5,7 @@ const App = ({ name, children }) =>
   <div className="App">
     <p> App! </p>
     <p> { name } </p>
-    {children}
+    { children }
   </div>
 
 export default App;
