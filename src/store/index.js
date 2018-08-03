@@ -1,26 +1,10 @@
 import { Subject } from 'rxjs';
 import { startWith, scan } from 'rxjs/operators';
-import { replace, actionIs, alter } from '../utils/state'
 import initialState from './initialState'
-import { cond, identity, T, compose, flip } from 'ramda'
+import { cond, flip } from 'ramda'
+import actionsToStates from './actionsToStates'
 
-// TODO: refactor flip away
-const reducer = flip(cond([
-  [ 
-    actionIs('SET_NAME'),
-    replace(['data', 'people', 0, 'name'])
-  ],
-  [ 
-    actionIs('SET_NAMES'), 
-    action => compose(
-      alter(['data', 'people', 0, 'name'], action.name1),
-      alter(['data', 'people', 1, 'name'], action.name2)
-    )
-  ],
-  [
-    T, ac => identity
-  ]
-]))
+const reducer = flip(cond(actionsToStates))
 
 const action$ = new Subject();
 
