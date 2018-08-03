@@ -13,18 +13,7 @@ const state$ = action$.pipe(
   scan(reducer)
 )
 
-const dispatcher = fn => (...args) =>
+export const dispatch = fn => (...args) =>
   action$.next(fn(...args));
-  
-export const setName = dispatcher((name) => ({  
-  type: 'SET_NAME',
-  name
-}));
-
-export const setNames = dispatcher((name1, name2) => ({  
-  type: 'SET_NAMES',
-  name1,
-  name2
-}));
 
 export default state$
