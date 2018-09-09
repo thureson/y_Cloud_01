@@ -38,14 +38,12 @@ const propsOrNull = state => ifElse(
   pathsToProps(state)
 )
 
-// TODO: Refactor, if using ramdas when -> callstack max. Something with ramda and recursion?
-const generateTree = state => node => node.element ? 
-  element(
-    node.element,
-    propsOrNull(state)(node.props),
-    ...map(generateTree(state))(node.children)
-  ) :
-  node
+const generateTree = state => node => element(
+  node.element,
+  propsOrNull(state)(node.props),
+  ...map(generateTree(state), node.children),
+  null
+)
 
 export const buildApp = state => state.app ?
   generateTree(state)(state.app) :
