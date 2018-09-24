@@ -11,7 +11,7 @@ Components are setup by following example:
 ```
 {
   element: App, 
-  // Where App is an component. 'Element' can also be any html tag -> 'div', 'p', ...
+  // Where App is an component.
   
   props: [['data', 'people', 0, 'name'], ...], 
   // Declares a path to wanted prop. Accept multiple paths to props as arrays. Example equals state.data.people[0].name
