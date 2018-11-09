@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
+import { setName } from '../../store/actionCreators/example'
 
 const App = ({ name, children }) =>
   <div className="App">
     <p> App! </p>
-    <p> { name } </p>
+    <button onClick={() => setName('kaput')}>
+      { name }
+    </button>
     { children }
   </div>
 
