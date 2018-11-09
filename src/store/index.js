@@ -14,6 +14,6 @@ const state$ = action$.pipe(
 )
 
 export const dispatch = fn => (...args) =>
-  action$.next(fn(...args));
+  action$.next(fn(...args))
 
 export default state$
