@@ -8,7 +8,7 @@ export default {
     children: [
       {
         element: Controls,
-        props: [],
+        props: [['data', 'controls', 'selectedBtn']],
         children: []
       }
     ]
@@ -19,7 +19,7 @@ export default {
       { name: 'Upu' }
     ],
     controls: {
-      button: 'first'
+      selectedBtn: 'first'
     }
   }
 }

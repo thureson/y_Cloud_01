@@ -1,6 +1,6 @@
 import { dispatch } from '../index.js'
 
-export const setButtonPressed = dispatch((button) => ({  
+export const setButtonPressed = selectedBtn => dispatch({  
   type: 'SET_BUTTON_PRESSED',
-  button
-}));
+  selectedBtn
+})

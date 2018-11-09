@@ -2,17 +2,15 @@ import React from 'react';
 import { map, range } from 'ramda'
 import Button from '../button/Button'
 import './Controls.css'
-import { dispatch } from '../../store'
-console.log('c: ', dispatch)
-const setButtonPressed = () => console.log('asd')
+import { setButtonPressed } from '../../store/actionCreators/controls'
 
-const Controls = ({ children }) =>
+const Controls = ({ children, selectedBtn }) =>
   <div className="Controls">
     <ul className="control-items">
     {
       map(
         (item) => 
-          <li className="control-item">
+          <li className="control-item" key={ item }>
             <Button
               title={ item }
               action={ setButtonPressed }
@@ -22,6 +20,9 @@ const Controls = ({ children }) =>
       )
     }
     </ul>
+    <p>
+      { selectedBtn }
+    </p>
     { children }
   </div>
 

@@ -4,7 +4,7 @@ import { compose } from 'ramda'
 export default [
   [ 
     actionIs('SET_NAME'),
-    replace(['data', 'people', 0, 'name'])
+    replace(['data', 'people', 1, 'name'])
   ],
   [ 
     actionIs('SET_NAMES'), 
