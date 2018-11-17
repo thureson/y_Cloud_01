@@ -2,9 +2,9 @@ import React from 'react';
 import { map, range } from 'ramda'
 import Button from '../button/Button'
 import './Controls.css'
-import { setButtonPressed } from '../../store/actionCreators/controls'
+import { setPlayerSpeed } from '../../store/actionCreators/config'
 
-const Controls = ({ children, selectedBtn }) =>
+const Controls = ({ children }) =>
   <div className="Controls">
     <ul className="control-items">
     {
@@ -13,16 +13,13 @@ const Controls = ({ children, selectedBtn }) =>
           <li className="control-item" key={ item }>
             <Button
               title={ item }
-              action={ setButtonPressed }
+              action={ setPlayerSpeed }
             />
           </li>,
         range(0,5)
       )
     }
     </ul>
-    <p>
-      { selectedBtn }
-    </p>
     { children }
   </div>
 

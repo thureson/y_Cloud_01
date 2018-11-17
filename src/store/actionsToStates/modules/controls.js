@@ -1,8 +1,11 @@
-import { actionIs, replace } from '../../../utils/state'
+import { actionIs, alter } from '../../../utils/state'
 
 export default [
   [ 
-    actionIs('SET_BUTTON_PRESSED'),
-    replace(['data', 'controls', 'selectedBtn'])
+    actionIs('SET_CONTROL_BTN'),
+    action => alter(
+      ['data', 'controls', 'inputs', action.btn],
+      action.down
+    )
   ]
 ]
