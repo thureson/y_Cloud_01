@@ -17,7 +17,8 @@ export default {
         props: [
           ['data', 'player', 'position', 'x'],
           ['data', 'player', 'position', 'y'],
-          ['data', 'player', 'config', 'speed']
+          ['data', 'player', 'config', 'speed'],
+          ['data', 'controls', 'inputs']
         ],
         children: []
       }

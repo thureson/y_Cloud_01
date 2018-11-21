@@ -1,15 +1,27 @@
 import { actionIs, alter } from '../../../utils/state'
-import { view, lensPath } from 'ramda'
-/*
+import { compose } from 'ramda'
+import { calculateMovement } from '../../../utils/movement'
+
 export default [
   [ 
-    actionIs('PLAYER_MOVE_RIGHT'),
-    action => state => alter(
-      ['data', 'player', 'position', 'x'],
-      view(
-        lensPath(['data', 'player', 'position', 'x']),
-        state
-      ) + 1
+    actionIs('PLAYER_MOVE'),
+    action => state => compose(
+      alter(
+        ['data', 'player', 'position', 'x'],
+        calculateMovement(
+          ['data', 'player', 'position', 'x'],
+          action,
+          state
+        )
+      ),
+      alter(
+        ['data', 'player', 'position', 'y'],
+        calculateMovement(
+          ['data', 'player', 'position', 'y'],
+          action,
+          state
+        )
+      )
     )(state)
   ]
-]*/
+]
