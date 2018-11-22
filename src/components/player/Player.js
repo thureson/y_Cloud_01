@@ -4,6 +4,7 @@ import user_input$ from '../../services/user-input'
 import { handleInput } from '../../utils/input'
 import { playerMove } from '../../store/actionCreators/player'
 import { map, multiply } from 'ramda'
+import { movementDirection } from '../../utils/movement'
 
 class Player extends React.Component {
   constructor(props) {
@@ -13,34 +14,28 @@ class Player extends React.Component {
   
   componentDidMount() {
     user_input$.subscribe(event => {
-      console.log('Handling... ', event.code, event.type)
       handleInput(event)
 
-      /* Testing movement
-      const cycle = interval => fn => setTimeout(
+      // Testing movement
+      const cycleEvery = interval => fn => setTimeout(
         () => {
           fn()
-
-          // condition when to loop
-          this.props.inputs['ArrowRight'] ?
-            cycle(interval)(fn) :
-            {}
+          cycleEvery(interval)(fn)
         },
         interval
       )
-      cycle(
+      cycleEvery(
         16
       )(
         () => {
           playerMove(
             map(
               multiply(this.props.speed),
-              [1, -1]
+              movementDirection(this.props.inputs)
             )
           )
         }
       )
-      */
     })
   }
 
@@ -51,6 +46,13 @@ class Player extends React.Component {
         Player
         <p>{ 'x: ' + x + ', ' + 'y: ' + y }</p>
         <p>{ 'speed: ' + speed }</p>
+        <p style={{
+          position: 'absolute',
+          bottom: y,
+          left: x
+        }}>
+          test
+        </p>
         { children }
       </div>
     )

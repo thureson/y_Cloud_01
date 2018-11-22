@@ -10,11 +10,11 @@ const action$ = new Subject();
 
 const state$ = action$.pipe(
   startWith(initialState),
-  tap(
+  /*tap(
     action => console.log(
       '      -->', prop('type')(action)
     )
-  ),
+  ),*/
   scan(reducer)
 )
 

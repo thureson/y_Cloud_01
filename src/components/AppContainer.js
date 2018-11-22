@@ -9,10 +9,7 @@ class AppContainer extends React.Component {
   }
   
   componentDidMount() {
-    state$.subscribe(newState => {
-      console.log(newState)
-      this.setState(newState)
-    })
+    state$.subscribe(newState => this.setState(newState))
   }
 
   render() {
